@@ -11,16 +11,21 @@ import (
 func main() {
 	var groet string
 
+	//Time
 	currentTime := time.Now()
 	hour := currentTime.Hour()
 	minutes := currentTime.Minute()
 
+	//Displaying the time to the user
 	fmt.Println("Current time: ", hour, ":", minutes)
 
+	//Converting the time to a readable/useable string
 	convertedTime := strconv.Itoa(hour) + strconv.Itoa(minutes)
 
-	fmt.Println(convertedTime)
+	//Printing the converted time [DEBUG ONLY]
+	//fmt.Println(convertedTime)
 
+	//Setting greeting based on time of day.
 	if convertedTime >= "700" && convertedTime <= "1159" {
 		groet = "Goedemorgen! "
 	}
@@ -30,5 +35,6 @@ func main() {
 	if convertedTime >= "1800" && convertedTime <= "2300" {
 		groet = "Goedeavond! "
 	}
+	//Displaying the greeting + default string to the user
 	fmt.Println(groet + "Welkom bij vakantie fonteyn!")
 }
