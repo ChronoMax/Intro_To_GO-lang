@@ -26,15 +26,26 @@ func main() {
 	//fmt.Println(convertedTime)
 
 	//Setting greeting based on time of day.
+	var defaultText string = "Welkom bij vakantie fonteyn!"
+	var nightText string = "Sorry, de parkeerplaats is ’s nachts gesloten"
+	var textUsed string
+
 	if convertedTime >= "700" && convertedTime <= "1159" {
 		groet = "Goedemorgen! "
+		textUsed = defaultText
 	}
 	if convertedTime >= "1200" && convertedTime <= "1759" {
 		groet = "Goedemiddag! "
+		textUsed = defaultText
 	}
 	if convertedTime >= "1800" && convertedTime <= "2300" {
 		groet = "Goedeavond! "
+		textUsed = defaultText
 	}
-	//Displaying the greeting + default string to the user
-	fmt.Println(groet + "Welkom bij vakantie fonteyn!")
+	if convertedTime >= "2300" && convertedTime <= "700" {
+		groet = ""
+		textUsed = nightText
+	}
+	//Displaying the greeting
+	fmt.Println(groet + textUsed)
 }
