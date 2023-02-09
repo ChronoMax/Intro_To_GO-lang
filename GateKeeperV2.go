@@ -16,33 +16,44 @@ func main() {
 	hour := currentTime.Hour()
 	minutes := currentTime.Minute()
 
+	//adds 0 when the time gets back as single number
+	minuteString := fmt.Sprintf("%02d", minutes)
+
 	//Displaying the time to the user
-	fmt.Println("Current time: ", hour, ":", minutes)
+	fmt.Println("Current time: ", hour, ":", minuteString)
 
 	//Converting the time to a readable/useable string
-	convertedTime := strconv.Itoa(hour) + strconv.Itoa(minutes)
+	convertedTime := strconv.Itoa(hour) + minuteString
+
+	// string to int
+	convertedTimeAsInt, err := strconv.Atoi(convertedTime)
+	if err != nil {
+		// ... handle error
+		panic(err)
+	}
 
 	//Printing the converted time [DEBUG ONLY]
 	//fmt.Println(convertedTime)
+	fmt.Println(convertedTimeAsInt)
 
 	//Setting greeting based on time of day.
 	var defaultText string = "Welkom bij vakantie fonteyn!"
 	var nightText string = "Sorry, de parkeerplaats is ’s nachts gesloten"
 	var textUsed string
 
-	if convertedTime >= "700" && convertedTime <= "1159" {
+	if convertedTimeAsInt >= 700 && convertedTimeAsInt <= 1159 {
 		groet = "Goedemorgen! "
 		textUsed = defaultText
 	}
-	if convertedTime >= "1200" && convertedTime <= "1759" {
+	if convertedTimeAsInt >= 1200 && convertedTimeAsInt <= 1759 {
 		groet = "Goedemiddag! "
 		textUsed = defaultText
 	}
-	if convertedTime >= "1800" && convertedTime <= "2300" {
+	if convertedTimeAsInt >= 1800 && convertedTimeAsInt <= 2300 {
 		groet = "Goedeavond! "
 		textUsed = defaultText
 	}
-	if convertedTime >= "2300" && convertedTime <= "700" {
+	if convertedTimeAsInt >= 2300 && convertedTimeAsInt <= 700 {
 		groet = ""
 		textUsed = nightText
 	}
